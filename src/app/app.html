@@ -46,7 +46,7 @@
 
       <div class="page-header-main-search">
         <input class="page-header-main-search-input" placeholder="Write what you are looking for">
-        <button class="page-header-main-search-btn">SEARCH</button>
+        <button class="page-header-main-search-btn" (click)="toggleCase3(true)">SEARCH</button>
       </div>
 
       <div class="page-header-main-cart">
@@ -66,10 +66,29 @@
 
     <div class="page-header-path">
       <mat-icon>home</mat-icon>
+      <ng-container *ngIf="!showCase3">
       <span class="page-header-path-item" *ngFor="let item of breadcrumbs">{{ item }} <mat-icon>keyboard_arrow_right</mat-icon></span>
+      </ng-container>
+
+      <ng-container *ngIf="showCase3">
+      <span class="page-header-path-item" *ngFor="let item of ['Search']">{{ item }} <mat-icon>keyboard_arrow_right</mat-icon></span>
+      </ng-container>
     </div>
 
-    <div class="page-body">
+    <div class="case3" *ngIf="showCase3">
+      <h1 class="search-results">Search results</h1>
+      <p class="not-found">No products were found</p>
+
+      <div class="form form3">
+        <h2 class="form3-title">Didn't find what you need?</h2>
+        <p class="form3-desc">Let us know, and we will work to get it for you!</p>
+        <textarea placeholder="Provide a link to the product webpage or write the brand and model name" rows="4"></textarea>
+        <input class="form3-input" placeholder="Your email">
+        <button type="button" class="form3-btn" (click)="toggleCase3(false)">Send request</button>
+      </div>
+    </div>
+
+    <div class="page-body" *ngIf="!showCase3">
       <div class="page-body-side">
         <h3>CATEGORY</h3>
 
@@ -108,11 +127,11 @@
             <div class="page-body-main-product-right-actions">
               <div class="page-body-main-product-right-actions-item">
                 <mat-icon>chat_bubble_outline</mat-icon>
-                <button type="button" class="ask">ASK FOR PRODUCT</button>
+                <button type="button" (click)="toggleCase1(true)" class="ask">ASK FOR PRODUCT</button>
               </div>
               <div class="page-body-main-product-right-actions-item">
                 <mat-icon>stacked_bar_chart</mat-icon>
-                <button type="button" class="watch">WATCH</button>
+                <button type="button" (click)="toggleCase2(true)" class="watch">WATCH</button>
               </div>
             </div>
           </div>
@@ -144,7 +163,41 @@
       </div>
 
       <p class="form1-desc">By submitting a message, you agree to <span class="underline">the privacy policy</span></p>
-      <button class="send" type="button">SEND</button>
+      <button class="send" (click)="toggleCase1(false)" type="button">SEND</button>
+    </div>
+  </div>
+
+  <div *ngIf="showCase2" class="overlay">
+    <div class="form form2">
+      <mat-icon class="close">close</mat-icon>
+
+      <h1 class="form2-title"><b>Notify me</b> when the product</h1>
+
+      <div class="form2-row">
+        <input type="checkbox">
+        <span>will be in stock</span>
+      </div>
+
+      <div class="form2-row">
+        <input type="checkbox">
+        <span>will be in action</span>
+      </div>
+
+      <div class="form2-row">
+        <input type="checkbox">
+        <span>the price will drop below</span>
+        <input class="price" type="text">
+        <span>CZK</span>
+      </div>
+
+      <div class="form2-row">
+        <input type="checkbox">
+        <span>Send notification to <span class="red">*</span></span>
+        <input class="email" type="text" placeholder="Email address (e.g. jan@novak.cz)">
+      </div>
+
+      <p class="form2-desc">I acknowledge that the address will be processed for the purpose of informing about the availability of the product, or about replacement with another product, etc., in accordance with the personal data processing principles available on this page.</p>
+      <button class="send" (click)="toggleCase2(false)" type="button">IMPOSE</button>
     </div>
   </div>
 </main>

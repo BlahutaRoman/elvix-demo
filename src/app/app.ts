@@ -22,9 +22,21 @@ export class App {
     'Home videophones',
   ];
 
-  showCase1 = true;
+  showCase1 = false;
   showCase2 = false;
   showCase3 = false;
+
+  toggleCase1(value: boolean): void {
+    this.showCase1 = value;
+  }
+
+  toggleCase2(value: boolean): void {
+    this.showCase2 = value;
+  }
+
+  toggleCase3(value: boolean): void {
+    this.showCase3 = value;
+  }
 
   categories = [
     'Camera systems',

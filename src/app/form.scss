@@ -10,11 +10,155 @@
   align-items: center;
 }
 
+.search-results {
+  font-weight: 500;
+  font-size: 26px;
+}
+
+.not-found {
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
 .form {
   padding: 20px;
   background-color: #fff;
   border: 1px #dadada solid;
   position: relative;
+
+  &3 {
+    width: 490px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+    &-title {
+      color: #07919B;
+      font-size: 24px;
+    }
+
+    &-desc {
+      font-size: 16px;
+      color: black;
+      margin-top: 0;
+      font-weight: bold;
+    }
+
+    &-btn {
+      background-color: #07919B;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      padding: 12px 20px;
+      font-weight: bold;
+    }
+
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      font-size: 16px;
+      line-height: 133%;
+
+      &::placeholder {
+        font-size: 16px;
+        line-height: 133%;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 20px;
+      height: 48px;
+      padding: 10px 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      margin-bottom: 20px;
+
+      &::placeholder {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+      }
+    }
+  }
+
+  &2 {
+    width: 490px;
+    overflow: auto;
+    // height: 420px;
+    // box-sizing: border-box;
+
+    .send {
+      background-color: #273945;
+      margin-top: 20px;
+      color: white;
+      font-size: 16px;
+      border: none;
+      padding: 10px 15px;
+    }
+
+    &-area {
+      &-text {
+        width: 100%;
+        padding: 10px 12px;
+        box-sizing: border-box;
+      }
+    }
+
+    &-title {
+      font-size: 18px;
+      text-align: center;
+      color: #1f1f1f;
+      font-weight: 500;
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+
+    &-desc {
+      font-size: 14px;
+      color: #4d4d4d;
+    }
+
+    &-label {
+      width: 195px;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    &-row {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      padding-right: 40px;
+
+      .price {
+        width: 90px;
+        height: 36px;
+        padding: 10px 12px;
+        box-sizing: border-box;
+        margin: 0 12px;
+      }
+
+      .email {
+        height: 36px;
+        padding: 10px 12px;
+        box-sizing: border-box;
+        margin-left: 12px;
+        flex: 1;
+      }
+    }
+
+    &-input {
+      width: 217px;
+      height: 36px;
+      box-sizing: border-box;
+    }
+  }
 
   &1 {
     width: 496.4px;
@@ -25,7 +169,7 @@
       background-color: #273945;
       margin-top: 20px;
       color: white;
-      font-size: 18px;
+      font-size: 16px;
       border: none;
       padding: 10px 15px;
     }
