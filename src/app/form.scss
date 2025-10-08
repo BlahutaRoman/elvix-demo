@@ -1,0 +1,89 @@
+.overlay {
+  position: fixed;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: white, $alpha: 0.65);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px #dadada solid;
+  position: relative;
+
+  &1 {
+    width: 496.4px;
+    overflow: auto;
+    height: 518px;
+
+    .send {
+      background-color: #273945;
+      margin-top: 20px;
+      color: white;
+      font-size: 18px;
+      border: none;
+      padding: 10px 15px;
+    }
+
+    &-area {
+      &-text {
+        width: 100%;
+        padding: 10px 12px;
+        box-sizing: border-box;
+      }
+    }
+
+    &-title {
+      font-size: 30px;
+      color: #1f1f1f;
+      font-weight: 500;
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+
+    &-desc {
+      font-size: 16px;
+      color: #4d4d4d;
+    }
+
+    &-label {
+      width: 195px;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    &-row {
+      display: flex;
+      margin: 20px 0;
+    }
+
+    &-input {
+      width: 217px;
+      height: 36px;
+      box-sizing: border-box;
+    }
+  }
+}
+
+mat-icon.close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: #4d4d4d;
+}
+
+span.red {
+  color: red;
+}
+
+span.underline {
+  text-decoration: underline;
+}
