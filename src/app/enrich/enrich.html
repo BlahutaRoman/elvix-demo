@@ -1,0 +1,206 @@
+<main class="page">
+  <header class="page-header">
+    <div class="page-header-top">
+      <p><mat-icon>local_shipping</mat-icon>FREE shipping in the Czech Republic over 1500 CZK</p>
+    </div>
+
+    <div class="page-header-nav">
+      <div class="page-header-nav-contacts">
+        <div class="page-header-nav-contacts-item">
+          <mat-icon>phone_in_talk</mat-icon>
+          <span>+420 776 345 933</span>
+        </div>
+
+        <div class="page-header-nav-contacts-item">
+          <mat-icon>mail_outline</mat-icon>
+          <span>sales@elvix.cz</span>
+        </div>
+      </div>
+
+      <div class="page-header-nav-info">
+        <span>{{ 'Shipping and payment'.toLocaleUpperCase() }}</span>
+        <span class="divider">|</span>
+        <span>{{ 'Loyalty program'.toLocaleUpperCase() }}</span>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </div>
+
+      <div class="page-header-nav-prefs">
+        <div class="page-header-nav-prefs-item page-header-nav-prefs-item-active">
+          <span>CZK</span>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </div>
+
+        <div class="page-header-nav-prefs-item page-header-nav-prefs-item-active">
+          <span>Czech</span>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </div>
+
+        <div class="page-header-nav-prefs-item">
+          <span>Login</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-header-main">
+      <img class="page-header-main-logo" src="logo.svg">
+
+      <!-- <div class="page-header-main-search">
+        <input class="page-header-main-search-input" placeholder="Write what you are looking for">
+        <button class="page-header-main-search-btn">SEARCH</button>
+      </div>
+
+      <div class="page-header-main-cart">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>Empty cart</span>
+      </div> -->
+    </div>
+  </header>
+
+  <article>
+    <div class="page-header-categories">
+      <div class="page-header-categories-bar">
+        <span class="page-header-categories-bar-item" *ngFor="let item of navItems">{{ item }}</span>
+        <button type="button" class="page-header-categories-bar-menu"><mat-icon>menu</mat-icon></button>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="enrich">
+        <h1 class="enrich-title">Form request (Case {{ request.case }})</h1>
+
+        <ng-container *ngIf="request.case === 1">
+          <div class="enrich-row">
+            <span>Email:</span>
+            <input [value]="request.email">
+          </div>
+
+          <div class="enrich-row">
+            <span>Phone:</span>
+            <input [value]="request.phone">
+          </div>
+
+          <div class="enrich-row">
+            <span>Message:</span>
+            <textarea rows="4" [value]="request.message"></textarea>
+          </div>
+
+          <div class="enrich-row">
+            <span>Product Name:</span>
+            <input [value]="request.product">
+          </div>
+
+          <div class="enrich-row">
+            <span>SKU/Product Code:</span>
+            <input [value]="request.sku">
+          </div>
+
+          <div class="enrich-row">
+            <span>e-Shop:</span>
+            <input [value]="request.shop">
+          </div>
+
+          <div class="enrich-row">
+            <span>On Stock:</span>
+            <input type="checkbox" [checked]="request.onStock">
+          </div>
+
+          <div class="enrich-row">
+            <span>Price Drop:</span>
+            <input type="checkbox" [checked]="request.priceDrop">
+          </div>
+
+          <div class="enrich-row">
+            <span>Price Under:</span>
+            <input [value]="request.priceUnder">
+          </div>
+
+          <div class="enrich-row">
+            <span>Has Promotion:</span>
+            <input type="checkbox" [checked]="request.hasPromotion">
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="request.case === 2">
+          <div class="enrich-row">
+            <span>Email:</span>
+            <input [value]="request.email">
+          </div>
+
+          <div class="enrich-row">
+            <span>Will be on Stock:</span>
+            <input type="checkbox" [checked]="request.willBeOnStock">
+          </div>
+
+          <div class="enrich-row">
+            <span>Will be in Sale:</span>
+            <input type="checkbox" [checked]="request.willBeInSale">
+          </div>
+
+          <div class="enrich-row">
+            <span>Price will Drop To:</span>
+            <input [value]="request.priceDropTo">
+          </div>
+
+          <div class="enrich-row">
+            <span>Product Name:</span>
+            <input [value]="request.product">
+          </div>
+
+          <div class="enrich-row">
+            <span>SKU/Product Code:</span>
+            <input [value]="request.sku">
+          </div>
+
+          <div class="enrich-row">
+            <span>e-Shop:</span>
+            <input [value]="request.shop">
+          </div>
+
+          <div class="enrich-row">
+            <span>On Stock:</span>
+            <input type="checkbox" [checked]="request.onStock">
+          </div>
+
+          <div class="enrich-row">
+            <span>Sellable:</span>
+            <input type="checkbox" [checked]="request.sellable">
+          </div>
+
+          <div class="enrich-row">
+            <span>Current Price:</span>
+            <input [value]="request.currentPrice">
+          </div>
+
+          <div class="enrich-row">
+            <span>Has Promotion:</span>
+            <input type="checkbox" [checked]="request.hasPromotion">
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="request.case === 3">
+          <div class="enrich-row">
+            <span>Email:</span>
+            <input [value]="request.email">
+          </div>
+
+          <div class="enrich-row">
+            <span>Message:</span>
+            <textarea rows="4" [value]="request.message"></textarea>
+          </div>
+
+          <div class="enrich-row">
+            <span>e-Shop:</span>
+            <input [value]="request.shop">
+          </div>
+
+          <div class="enrich-row">
+            <span>Reffering Page/Term:</span>
+            <input [value]="request.refferingPage">
+          </div>
+        </ng-container>
+
+        <a target="_blank" [href]="hrefs[request.case-1]"><button class="enrich-btn" (click)="goBack()">SUBMIT</button></a>
+      </div>
+    </div>
+  </article>
+</main>

@@ -1,16 +1,40 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
+import { Enrich } from "./enrich/enrich";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatIconModule, CommonModule],
+  imports: [RouterOutlet, MatIconModule, CommonModule, FormsModule, Enrich],
   templateUrl: './app.html',
   styleUrls: ['./app.scss', './form.scss']
 })
-export class App {
+export class App implements OnInit {
   protected title = 'elvix-demo';
+
+  public ngOnInit(): void {
+    // localStorage.removeItem('elvix');
+    if (!localStorage.getItem('elvix')) {
+      localStorage.setItem('elvix', JSON.stringify([]));
+    }
+  }
+
+  // CASE 1
+  public email1 = '';
+  public phone1 = '';
+  public message1 = '';
+
+  // CASE 2
+  public willStock = false;
+  public willAction = false;
+  public belowPrice = '';
+  public email2 = '';
+
+  // CASE 3
+  public message3 = '';
+  public email3 = '';
 
   navItems = [
     'Camera systems',
@@ -22,20 +46,93 @@ export class App {
     'Home videophones',
   ];
 
+  public step2 = false;
+
   showCase1 = false;
   showCase2 = false;
   showCase3 = false;
 
+  goBack1(event: any): void {
+    this.step2 = false;
+    console.log('app')
+  }
+
   toggleCase1(value: boolean): void {
     this.showCase1 = value;
+
+    if (!value) {
+      const items: any[] = JSON.parse(localStorage.getItem('elvix')!) || [];
+
+      items.push({
+        case: 1,
+        shop: 'Elvix',
+        sku: '11549',
+        product: 'Kingston 128GB SD card',
+
+        email: this.email1,
+        phone: this.phone1,
+        message: this.message1,
+
+        onStock: true,
+        priceDrop: true,
+        priceUnder: 250.00,
+        hasPromotion: false,
+      });
+
+      localStorage.removeItem('elvix');
+      localStorage.setItem('elvix', JSON.stringify(items));
+      this.step2 = true;
+    }
   }
 
   toggleCase2(value: boolean): void {
     this.showCase2 = value;
+
+    if (!value) {
+      const items: any[] = JSON.parse(localStorage.getItem('elvix')!) || [];
+
+      items.push({
+        case: 2,
+        shop: 'Elvix',
+        sku: '11549',
+        product: 'Kingston 128GB SD card',
+
+        email: this.email2,
+        willBeOnStock: this.willStock,
+        willBeInSale: this.willAction,
+        priceDropTo: this.belowPrice,
+
+        onStock: true,
+        sellable: true,
+        currentPrice: 250.00,
+        hasPromotion: false,
+      });
+
+      localStorage.removeItem('elvix');
+      localStorage.setItem('elvix', JSON.stringify(items));
+      this.step2 = true;
+    }
   }
 
   toggleCase3(value: boolean): void {
     this.showCase3 = value;
+
+    if (!value) {
+      const items: any[] = JSON.parse(localStorage.getItem('elvix')!) || [];
+
+      items.push({
+        case: 3,
+        shop: 'Elvix',
+        refferingPage: 'Central Screen Tempered Glass & Frame Cover for Tesla Model Y Juniper',
+
+        email: this.email3,
+        message: this.message3
+      });
+
+      localStorage.removeItem('elvix');
+      localStorage.setItem('elvix', JSON.stringify(items));
+      this.step2 = true;
+    }
   }
 
   categories = [

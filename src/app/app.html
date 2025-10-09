@@ -1,4 +1,6 @@
-<main class="page">
+<app-enrich (close)="goBack1($event)" *ngIf="step2" />
+
+<main class="page" *ngIf="!step2">
   <header class="page-header">
     <div class="page-header-top">
       <p><mat-icon>local_shipping</mat-icon>FREE shipping in the Czech Republic over 1500 CZK</p>
@@ -82,8 +84,8 @@
       <div class="form form3">
         <h2 class="form3-title">Didn't find what you need?</h2>
         <p class="form3-desc">Let us know, and we will work to get it for you!</p>
-        <textarea placeholder="Provide a link to the product webpage or write the brand and model name" rows="4"></textarea>
-        <input class="form3-input" placeholder="Your email">
+        <textarea [(ngModel)]="message3" placeholder="Provide a link to the product webpage or write the brand and model name" rows="4"></textarea>
+        <input [(ngModel)]="email3" class="form3-input" placeholder="Your email">
         <button type="button" class="form3-btn" (click)="toggleCase3(false)">Send request</button>
       </div>
     </div>
@@ -149,17 +151,17 @@
 
       <div class="form1-row">
         <p class="form1-label">Your email <span class="red">*</span></p>
-        <input class="form1-input">
+        <input class="form1-input" [(ngModel)]="email1">
       </div>
 
       <div class="form1-row">
         <p class="form1-label">Phone</p>
-        <input class="form1-input">
+        <input class="form1-input" [(ngModel)]="phone1">
       </div>
 
       <div class="form1-area">
         <p class="form1-label">Message <span class="red">*</span></p>
-        <textarea rows="7" class="form1-area-text"></textarea>
+        <textarea [(ngModel)]="message1" rows="7" class="form1-area-text"></textarea>
       </div>
 
       <p class="form1-desc">By submitting a message, you agree to <span class="underline">the privacy policy</span></p>
@@ -174,26 +176,25 @@
       <h1 class="form2-title"><b>Notify me</b> when the product</h1>
 
       <div class="form2-row">
-        <input type="checkbox">
+        <input [(ngModel)]="willStock" type="checkbox">
         <span>will be in stock</span>
       </div>
 
       <div class="form2-row">
-        <input type="checkbox">
+        <input [(ngModel)]="willAction" type="checkbox">
         <span>will be in action</span>
       </div>
 
       <div class="form2-row">
         <input type="checkbox">
         <span>the price will drop below</span>
-        <input class="price" type="text">
+        <input [(ngModel)]="belowPrice" class="price" type="text">
         <span>CZK</span>
       </div>
 
       <div class="form2-row">
-        <input type="checkbox">
         <span>Send notification to <span class="red">*</span></span>
-        <input class="email" type="text" placeholder="Email address (e.g. jan@novak.cz)">
+        <input [(ngModel)]="email2" class="email" type="text" placeholder="Email address (e.g. jan@novak.cz)">
       </div>
 
       <p class="form2-desc">I acknowledge that the address will be processed for the purpose of informing about the availability of the product, or about replacement with another product, etc., in accordance with the personal data processing principles available on this page.</p>
