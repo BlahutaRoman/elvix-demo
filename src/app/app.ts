@@ -22,19 +22,19 @@ export class App implements OnInit {
   }
 
   // CASE 1
-  public email1 = '';
-  public phone1 = '';
-  public message1 = '';
+  public email1 = 'email@mail.com';
+  public phone1 = '+420442655439';
+  public message1 = 'Hi! I really want this SD card, but the price is too much for me at the moment.\nCould i get a 30% discount?';
 
   // CASE 2
   public willStock = false;
   public willAction = false;
-  public belowPrice = '';
-  public email2 = '';
+  public belowPrice = '190';
+  public email2 = 'email@mail.com';
 
   // CASE 3
-  public message3 = '';
-  public email3 = '';
+  public message3 = 'Hi! I would like to buy a cover for my tesla screen, but can\'t find one for Model Y Juniper. Please consider adding them to your stock.\nAll-in-One Central Screen Tempered Glass & Frame Cover for Tesla Model Y Juniper 2025+\nhttps://teslaunch.net/products/all-in-one-central-screen-tempered-glass-frame-cover-for-tesla-model-y-juniper';
+  public email3 = 'email@mail.com';
 
   navItems = [
     'Camera systems',
