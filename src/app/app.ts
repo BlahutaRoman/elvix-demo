@@ -1,23 +1,35 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Enrich } from "./enrich/enrich";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
-  imports: [MatIconModule, CommonModule, FormsModule, ReactiveFormsModule, Enrich, MatProgressSpinner],
+  imports: [MatIconModule, MatButtonModule, CommonModule, FormsModule, ReactiveFormsModule, Enrich, MatProgressSpinner],
   templateUrl: './app.html',
-  styleUrls: ['./app.scss', './form.scss']
+  styleUrls: ['./app.scss', './form.scss', './modal.scss']
 })
 export class App implements OnInit {
   protected title = 'elvix-demo';
+
+  public oaiToken = new FormControl('', [Validators.required, Validators.minLength(50)]);
+
+  public setOAIToken(): void {
+    localStorage.setItem('gpt-token', this.oaiToken.value!);
+    this.showModal = false;
+  }
 
   public ngOnInit(): void {
     // localStorage.removeItem('elvix');
     if (!localStorage.getItem('elvix')) {
       localStorage.setItem('elvix', JSON.stringify([]));
+    }
+
+    if (localStorage.getItem('gpt-token')) {
+      this.showModal = false;
     }
   }
 
@@ -25,6 +37,8 @@ export class App implements OnInit {
   public email1 = 'email@mail.com';
   public phone1 = '+420442655439';
   public message1 = 'Hi! I really want this SD card, but the price is too much for me at the moment.\nCould i get a 30% discount?';
+
+  public showModal = true;
 
   // CASE 2
   public willStock = false;

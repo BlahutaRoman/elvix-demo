@@ -1,0 +1,50 @@
+.m-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(12px);
+  background-color: rgba($color: white, $alpha: 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.m-window {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 60px;
+
+  input {
+    height: 32px;
+    padding: 4px 4px 4px 8px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  button {
+    margin-top: 16px;
+    border: none;
+    padding: 10px 20px;
+    background-color: #07919B;
+    color: white;
+    font-size: 24px;
+    border-radius: 3px;
+    font-weight: bold;
+    width: 150px;
+    box-sizing: border-box;
+
+    &:disabled {
+      background-color: gray;
+      color: lightgray;
+    }
+  }
+}

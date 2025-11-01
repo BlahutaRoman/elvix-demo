@@ -202,3 +202,13 @@
     </div>
   </div>
 </main>
+
+<ng-container *ngIf="showModal">
+  <div class="m-overlay">
+    <div class="m-window">
+      <h1>Elvix AI Enrichment Demo</h1>
+      <input [formControl]="oaiToken" type="text" placeholder="Enter your OpenAI Token">
+      <button (click)="setOAIToken()" mat-raised-button [disabled]="!oaiToken.valid" type="button">OK</button>
+    </div>
+  </div>
+</ng-container>

@@ -21,7 +21,8 @@ export class Enrich implements OnInit {
   public showSpinner = false;
   public isDone = false;
 
-  private client = new OpenAI();
+  // private client = new OpenAI();
+  private client!: OpenAI;
 
   public formCase1AI = new FormGroup({
     email: new FormControl(''),
@@ -36,14 +37,6 @@ export class Enrich implements OnInit {
     hasPromotion: new FormControl(false),
     priceDrop: new FormControl(false),
   });
-
-  // Product Name:
-  // SKU/Product Code:
-  // e-Shop:
-  // On Stock:
-  // Price Drop:
-  // Price Under:
-  // Has Promotion:
 
   request: any = undefined;
 
@@ -103,10 +96,12 @@ export class Enrich implements OnInit {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: formBody
-      }).then(prom => {
+      }).then(prom => {});
+
+      setTimeout(() => {
         this.isDone = true;
         localStorage.setItem('currentId', JSON.stringify(Number(localStorage.getItem('currentId')! + 1)));
-      });
+      }, 2000);
 
     });
   }
@@ -114,6 +109,7 @@ export class Enrich implements OnInit {
   constructor(private http: HttpClient) {}
 
   public ngOnInit(): void {
+    this.client = new OpenAI({dangerouslyAllowBrowser: true, apiKey: localStorage.getItem('gpt-token')!});
     if (!localStorage.getItem('currentId')) {
       localStorage.setItem('currentId', '1');
     }
@@ -189,7 +185,6 @@ please output them in json format (camelCase property names). No other text besi
     console.log(prompt);
 
     const response = await this.client.responses.create({
-      // apiKey: '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',
       model: "gpt-5-nano",
       input: prompt,
     });
