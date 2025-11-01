@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterOutlet } from '@angular/router';
 import { Enrich } from "./enrich/enrich";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatIconModule, CommonModule, FormsModule, Enrich],
+  imports: [MatIconModule, CommonModule, FormsModule, ReactiveFormsModule, Enrich, MatProgressSpinner],
   templateUrl: './app.html',
   styleUrls: ['./app.scss', './form.scss']
 })

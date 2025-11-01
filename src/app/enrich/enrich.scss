@@ -1,3 +1,38 @@
+div.step3-bg {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: white, $alpha: 0.6);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+::ng-deep .mdc-circular-progress__indeterminate-circle-graphic circle {
+  stroke: #07919B !important;
+}
+
+p.step3-text {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px 0 0 0;
+  text-align: center;
+}
+
+
+
+
 .wrapper {
   display: flex;
   justify-content: center;

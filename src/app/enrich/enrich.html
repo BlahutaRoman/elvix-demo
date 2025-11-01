@@ -69,55 +69,59 @@
         <h1 class="enrich-title">Form request (Case {{ request.case }})</h1>
 
         <ng-container *ngIf="request.case === 1">
+          <form [formGroup]="formCase1AI">
           <div class="enrich-row">
             <span>Email:</span>
-            <input [value]="request.email">
+            <input formControlName="email">
           </div>
 
           <div class="enrich-row">
             <span>Phone:</span>
-            <input [value]="request.phone">
+            <input formControlName="phone">
           </div>
 
           <div class="enrich-row">
             <span>Message:</span>
-            <textarea rows="4" [value]="request.message"></textarea>
+            <textarea rows="4" formControlName="message"></textarea>
           </div>
 
           <div class="enrich-row">
             <span>Product Name:</span>
-            <input [value]="request.product">
+            <input formControlName="productName">
           </div>
 
           <div class="enrich-row">
             <span>SKU/Product Code:</span>
-            <input [value]="request.sku">
+            <input formControlName="sku">
           </div>
 
           <div class="enrich-row">
             <span>e-Shop:</span>
-            <input [value]="request.shop">
+            <input formControlName="eShop">
           </div>
 
           <div class="enrich-row">
             <span>On Stock:</span>
-            <input type="checkbox" [checked]="request.onStock">
+            <input type="checkbox" formControlName="onStock">
           </div>
 
           <div class="enrich-row">
             <span>Price Drop:</span>
-            <input type="checkbox" [checked]="request.priceDrop">
+            <input type="checkbox" formControlName="priceDrop">
           </div>
 
           <div class="enrich-row">
             <span>Price Under:</span>
-            <input [value]="request.priceUnder">
+            <input formControlName="priceUnder">
           </div>
 
           <div class="enrich-row">
             <span>Has Promotion:</span>
-            <input type="checkbox" [checked]="request.hasPromotion">
+            <input type="checkbox" formControlName="hasPromotion">
           </div>
+
+          <button class="enrich-btn" (click)="case1AI()">SUBMIT</button>
+          </form>
         </ng-container>
 
         <ng-container *ngIf="request.case === 2">
@@ -199,8 +203,22 @@
           </div>
         </ng-container>
 
-        <a target="_blank" [href]="hrefs[request.case-1]"><button class="enrich-btn" (click)="goBack()">SUBMIT</button></a>
+        <a target="_blank" *ngIf="request.case !== 1" [href]="hrefs[request.case-1]"><button class="enrich-btn" (click)="goBack()">SUBMIT</button></a>
       </div>
     </div>
   </article>
 </main>
+
+
+<ng-container *ngIf="showSpinner">
+  <div class="step3-bg">
+    <div class="step3-container" *ngIf="!isDone">
+      <mat-progress-spinner color="red" mode="indeterminate" diameter="100"></mat-progress-spinner>
+      <p class="step3-text">Processing...</p>
+    </div>
+
+    <div class="step3-container" *ngIf="isDone">
+      <a target="_blank" [href]="hrefs[0]"><button class="enrich-btn" [ngStyle]="{width: '200px'}" (click)="goBack()">GO TO TABLE</button></a>
+    </div>
+  </div>
+</ng-container>
