@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +10,7 @@ import OpenAI from 'openai';
   selector: 'app-enrich',
   imports: [MatIconModule, CommonModule, FormsModule, ReactiveFormsModule, MatProgressSpinner],
   templateUrl: './enrich.html',
+  providers: [HttpClient],
   styleUrls: ['./enrich.scss', '../app.scss']
 })
 export class Enrich implements OnInit {
@@ -19,7 +21,7 @@ export class Enrich implements OnInit {
   public showSpinner = false;
   public isDone = false;
 
-  // private client = new OpenAI({});
+  private client = new OpenAI();
 
   public formCase1AI = new FormGroup({
     email: new FormControl(''),
@@ -82,15 +84,40 @@ export class Enrich implements OnInit {
       this.formCase1AI.controls.priceUnder.value,
       this.formCase1AI.controls.hasPromotion.value,
       this.formCase1AI.controls.priceDrop.value,
-    ).then(response => {
+    ).then(responseTxt => {
+      const response = JSON.parse(responseTxt);
       console.log('RESPONSE:\n=========')
-      console.log(JSON.parse(response));
-      this.isDone = true;
-      // window.open('https://docs.google.com/spreadsheets/d/1LGLx7Var3O6PZz7ZQ2zg24086tvTNjTzUJuoqkcQs1I/edit?usp=sharing', '_blank');
+      console.log((response));
+
+      response.id = localStorage.getItem('currentId');
+      response.case = '1';
+
+      const formBody = Object.entries(response)
+        .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+        .join('&');
+
+      fetch('https://script.google.com/macros/s/AKfycbw-EdzI9T4mfSlxmQaUDF6pORKxXWV2r5d--lzobjkPVWZY1W-Yqx5EOqTSqx2hdlzr/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formBody
+      }).then(prom => {
+        this.isDone = true;
+        localStorage.setItem('currentId', JSON.stringify(Number(localStorage.getItem('currentId')! + 1)));
+      });
+
     });
   }
 
+  constructor(private http: HttpClient) {}
+
   public ngOnInit(): void {
+    if (!localStorage.getItem('currentId')) {
+      localStorage.setItem('currentId', '1');
+    }
+
     const requests: any[] = JSON.parse(localStorage.getItem('elvix')!);
     this.request = requests[requests.length-1];
     console.log(this.request);
